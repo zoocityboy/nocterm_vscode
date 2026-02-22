@@ -1,12 +1,16 @@
-# Nocterm Dev
+# Nocterm
 
 Type-safe VS Code snippets for building Nocterm UI components in Dart.
 
-![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.109.0-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
-![TypeScript](https://img.shields.io/badge/Built%20with-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Version](https://img.shields.io/badge/version-0.0.1-6f42c1?style=flat-square)
+[![CI](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci-vscode-extension.yml/badge.svg?branch=main)](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci-vscode-extension.yml)
+![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey?style=flat-square)
+![Version](https://img.shields.io/badge/version-0.0.2-6f42c1?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+[![License](https://img.shields.io/github/license/zoocityboy/nocterm_vscode?style=flat-square)](LICENSE)
 
 [Features](#features) • [Install](#install) • [Usage](#usage) • [Snippet Reference](#snippet-reference) • [Development](#development)
+
+[Releases](https://github.com/zoocityboy/nocterm_vscode/releases) • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=zoocityboy.nocterm-dev)
 
 ## Features
 
@@ -16,6 +20,9 @@ Type-safe VS Code snippets for building Nocterm UI components in Dart.
 
 > [!IMPORTANT]
 > This extension currently contributes snippets for `dart` files only.
+
+> [!NOTE]
+> The coverage badge is marked as pending until coverage reporting is wired into CI.
 
 ## Install
 
