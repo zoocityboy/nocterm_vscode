@@ -13,7 +13,7 @@ on:
       - 'v*'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: publish-vscode-extension-${{ github.ref }}
@@ -53,6 +53,14 @@ jobs:
         with:
           name: nocterm-dev-vsix
           path: out/nocterm-dev.vsix
+
+      - name: Upload VSIX to GitHub Release
+        if: ${{ startsWith(github.ref, 'refs/tags/v') && !inputs.dry_run }}
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GH_TOKEN || github.token }}
+          files: out/nocterm-dev.vsix
+          fail_on_unmatched_files: true
 
       - name: Validate publish prerequisites
         if: ${{ !inputs.dry_run }}
