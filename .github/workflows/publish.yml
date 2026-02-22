@@ -1,0 +1,67 @@
+name: Publish VS Code Extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Build and validate only (skip publish)
+        required: false
+        default: false
+        type: boolean
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-vscode-extension-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile extension
+        run: npm run compile
+
+      - name: Lint source
+        run: npm run lint
+
+      - name: Package VSIX
+        run: npm run build:vsix
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nocterm-dev-vsix
+          path: out/nocterm-dev.vsix
+
+      - name: Validate publish prerequisites
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ -z "${VSCE_PAT}" ]; then
+            echo "VSCE_PAT is not set. Add it in repository secrets before publishing."
+            exit 1
+          fi
+
+      - name: Publish to VS Code Marketplace
+        if: ${{ !inputs.dry_run }}
+        run: npx @vscode/vsce publish --packagePath out/nocterm-dev.vsix --pat "${VSCE_PAT}"

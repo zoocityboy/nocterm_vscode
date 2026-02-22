@@ -48,7 +48,7 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test",
-    "build:vsix": "npx @vscode/vsce package -o out/"
+    "build:vsix": "npx @vscode/vsce package --out out/nocterm-dev.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.109.0",
