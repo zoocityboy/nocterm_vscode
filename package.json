@@ -2,36 +2,36 @@
   "name": "nocterm-dev",
   "displayName": "Nocterm",
   "description": "Nocterm is a Visual Studio Code extension that provides snippets for Nocterm, a terminal-based prompt system. This extension is designed to enhance the development experience for users working with Nocterm by offering a collection of useful snippets that can be easily inserted into their code.",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "homepage": "https://nocterm.dev/",
   "publisher": "zoocityboy",
   "author": {
     "email": "zoocityboy@gmail.com",
     "name": "zoocityboy"
   },
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/zoocityboy/nocterm_vscode.git"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zoocityboy/nocterm_vscode.git"
+  },
   "engines": {
     "vscode": "^1.109.0"
   },
   "icon": "media/nocterm.png",
-	"categories": [
-		"Programming Languages",
-		"Snippets",
-		"Linters",
-		"Formatters",
-		"Debuggers"
-	],
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters",
+    "Formatters",
+    "Debuggers"
+  ],
   "keywords": [
     "nocterm",
     "dart"
   ],
   "activationEvents": [],
   "extensionDependencies": [
-		"Dart-Code.dart-code"
-	],
+    "Dart-Code.dart-code"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
