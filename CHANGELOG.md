@@ -4,6 +4,13 @@ All notable changes to the "nocterm-context7-snippets" extension will be documen
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.1](https://github.com/zoocityboy/nocterm_vscode/compare/v0.2.0...v0.2.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* update permissions to write and add VSIX upload step to GitHub Release ([73c4c40](https://github.com/zoocityboy/nocterm_vscode/commit/73c4c40ac6cda9f842aee9564265ca8ce22e403e))
+
 ## [0.2.0](https://github.com/zoocityboy/nocterm_vscode/compare/v0.1.0...v0.2.0) (2026-02-22)
 
 
