@@ -2,7 +2,7 @@
 
 Type-safe VS Code snippets for building Nocterm UI components in Dart.
 
-[![CI](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci-vscode-extension.yml/badge.svg?branch=main)](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci-vscode-extension.yml)
+[![CI](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/zoocityboy/nocterm_vscode/actions/workflows/ci-vscode-extension.yml)
 ![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey?style=flat-square)
 ![Version](https://img.shields.io/badge/version-0.0.2-6f42c1?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
