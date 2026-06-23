@@ -50,13 +50,13 @@
     "menus": {
       "explorer/context": [
         {
-          "command": "nocterm.newBloc",
-          "when": "explorerResourceIsFolder",
-          "group": "2_nocterm"
-        },
-        {
-          "command": "nocterm.newCubit",
-          "when": "explorerResourceIsFolder",
+        "command": "nocterm.newBloc",
+        "when": "explorerResourceIsFolder && nocterm:hasNoctermBloc",
+        "group": "2_nocterm"
+      },
+      {
+        "command": "nocterm.newCubit",
+        "when": "explorerResourceIsFolder && nocterm:hasNoctermBloc",
           "group": "2_nocterm"
         }
       ]

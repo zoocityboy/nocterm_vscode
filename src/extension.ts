@@ -143,7 +143,42 @@ async function generateCubit(folderUri?: vscode.Uri) {
   await writeAllFiles(folder, files);
 }
 
-export function activate(context: vscode.ExtensionContext) {
+async function checkNoctermBlocDependency(): Promise<boolean> {
+  const folders = vscode.workspace.workspaceFolders;
+  if (!folders) { return false; }
+
+  for (const folder of folders) {
+    const pubspecUri = vscode.Uri.joinPath(folder.uri, 'pubspec.yaml');
+    try {
+      const content = await vscode.workspace.fs.readFile(pubspecUri);
+      const text = Buffer.from(content).toString('utf-8');
+      if (text.includes('nocterm_bloc')) { return true; }
+    } catch {
+      // no pubspec.yaml in this folder, skip
+    }
+  }
+  return false;
+}
+
+export async function activate(context: vscode.ExtensionContext) {
+  const hasDep = await checkNoctermBlocDependency();
+  vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', hasDep);
+
+  const watcher = vscode.workspace.createFileSystemWatcher('**/pubspec.yaml');
+  watcher.onDidChange(async () => {
+    const dep = await checkNoctermBlocDependency();
+    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
+  });
+  watcher.onDidCreate(async () => {
+    const dep = await checkNoctermBlocDependency();
+    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
+  });
+  watcher.onDidDelete(async () => {
+    const dep = await checkNoctermBlocDependency();
+    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
+  });
+  context.subscriptions.push(watcher);
+
   context.subscriptions.push(
     vscode.commands.registerCommand('nocterm.newBloc', generateBloc),
     vscode.commands.registerCommand('nocterm.newCubit', generateCubit),
