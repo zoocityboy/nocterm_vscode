@@ -29,8 +29,7 @@
     "dart"
   ],
   "activationEvents": [
-    "onCommand:nocterm.newBloc",
-    "onCommand:nocterm.newCubit"
+    "onStartupFinished"
   ],
   "extensionDependencies": [
     "Dart-Code.dart-code"

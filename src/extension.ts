@@ -160,24 +160,23 @@ async function checkNoctermBlocDependency(): Promise<boolean> {
   return false;
 }
 
+async function updateContextKey(): Promise<void> {
+  const dep = await checkNoctermBlocDependency();
+  vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
+}
+
 export async function activate(context: vscode.ExtensionContext) {
-  const hasDep = await checkNoctermBlocDependency();
-  vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', hasDep);
+  await updateContextKey();
 
   const watcher = vscode.workspace.createFileSystemWatcher('**/pubspec.yaml');
-  watcher.onDidChange(async () => {
-    const dep = await checkNoctermBlocDependency();
-    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
-  });
-  watcher.onDidCreate(async () => {
-    const dep = await checkNoctermBlocDependency();
-    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
-  });
-  watcher.onDidDelete(async () => {
-    const dep = await checkNoctermBlocDependency();
-    vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
-  });
+  watcher.onDidChange(updateContextKey);
+  watcher.onDidCreate(updateContextKey);
+  watcher.onDidDelete(updateContextKey);
   context.subscriptions.push(watcher);
+
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeWorkspaceFolders(updateContextKey),
+  );
 
   context.subscriptions.push(
     vscode.commands.registerCommand('nocterm.newBloc', generateBloc),
