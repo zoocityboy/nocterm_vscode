@@ -43,7 +43,26 @@ async function writeAllFiles(
   return true;
 }
 
+async function hasNoctermBlocDep(): Promise<boolean> {
+  const pubspecs = await vscode.workspace.findFiles('**/pubspec.yaml', '**/node_modules/**', 20);
+  for (const uri of pubspecs) {
+    try {
+      const content = await vscode.workspace.fs.readFile(uri);
+      const text = Buffer.from(content).toString('utf-8');
+      if (/nocterm_bloc/.test(text)) { return true; }
+    } catch {
+      // skip unreadable
+    }
+  }
+  return false;
+}
+
 async function generateBloc(folderUri?: vscode.Uri) {
+  if (!(await hasNoctermBlocDep())) {
+    vscode.window.showErrorMessage('This project does not depend on nocterm_bloc');
+    return;
+  }
+
   const uri = folderUri ?? vscode.workspace.workspaceFolders?.[0]?.uri;
   if (!uri) {
     vscode.window.showErrorMessage('No folder selected and no workspace folder open');
@@ -102,6 +121,11 @@ async function generateBloc(folderUri?: vscode.Uri) {
 }
 
 async function generateCubit(folderUri?: vscode.Uri) {
+  if (!(await hasNoctermBlocDep())) {
+    vscode.window.showErrorMessage('This project does not depend on nocterm_bloc');
+    return;
+  }
+
   const uri = folderUri ?? vscode.workspace.workspaceFolders?.[0]?.uri;
   if (!uri) {
     vscode.window.showErrorMessage('No folder selected and no workspace folder open');
@@ -143,41 +167,7 @@ async function generateCubit(folderUri?: vscode.Uri) {
   await writeAllFiles(folder, files);
 }
 
-async function checkNoctermBlocDependency(): Promise<boolean> {
-  const folders = vscode.workspace.workspaceFolders;
-  if (!folders) { return false; }
-
-  for (const folder of folders) {
-    const pubspecUri = vscode.Uri.joinPath(folder.uri, 'pubspec.yaml');
-    try {
-      const content = await vscode.workspace.fs.readFile(pubspecUri);
-      const text = Buffer.from(content).toString('utf-8');
-      if (text.includes('nocterm_bloc')) { return true; }
-    } catch {
-      // no pubspec.yaml in this folder, skip
-    }
-  }
-  return false;
-}
-
-async function updateContextKey(): Promise<void> {
-  const dep = await checkNoctermBlocDependency();
-  vscode.commands.executeCommand('setContext', 'nocterm:hasNoctermBloc', dep);
-}
-
-export async function activate(context: vscode.ExtensionContext) {
-  await updateContextKey();
-
-  const watcher = vscode.workspace.createFileSystemWatcher('**/pubspec.yaml');
-  watcher.onDidChange(updateContextKey);
-  watcher.onDidCreate(updateContextKey);
-  watcher.onDidDelete(updateContextKey);
-  context.subscriptions.push(watcher);
-
-  context.subscriptions.push(
-    vscode.workspace.onDidChangeWorkspaceFolders(updateContextKey),
-  );
-
+export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('nocterm.newBloc', generateBloc),
     vscode.commands.registerCommand('nocterm.newCubit', generateCubit),

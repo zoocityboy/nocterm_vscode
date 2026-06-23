@@ -50,12 +50,12 @@
       "explorer/context": [
         {
         "command": "nocterm.newBloc",
-        "when": "explorerResourceIsFolder && nocterm:hasNoctermBloc",
+        "when": "explorerResourceIsFolder",
         "group": "2_nocterm"
       },
       {
         "command": "nocterm.newCubit",
-        "when": "explorerResourceIsFolder && nocterm:hasNoctermBloc",
+        "when": "explorerResourceIsFolder",
           "group": "2_nocterm"
         }
       ]
