@@ -28,12 +28,39 @@
     "nocterm",
     "dart"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:nocterm.newBloc",
+    "onCommand:nocterm.newCubit"
+  ],
   "extensionDependencies": [
     "Dart-Code.dart-code"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "nocterm.newBloc",
+        "title": "Nocterm: New BLoC"
+      },
+      {
+        "command": "nocterm.newCubit",
+        "title": "Nocterm: New Cubit"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "nocterm.newBloc",
+          "when": "explorerResourceIsFolder",
+          "group": "2_nocterm"
+        },
+        {
+          "command": "nocterm.newCubit",
+          "when": "explorerResourceIsFolder",
+          "group": "2_nocterm"
+        }
+      ]
+    },
     "snippets": [
       {
         "language": "dart",
