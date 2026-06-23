@@ -16,10 +16,7 @@ Type-safe VS Code snippets for building Nocterm UI components in Dart.
 
 - Focused snippets for common Nocterm component patterns.
 - Fast `n`-prefixed completions in Dart files.
-- Minimal extension runtime (no commands, no settings).
-
-> [!IMPORTANT]
-> This extension currently contributes snippets for `dart` files only.
+- **Right-click BLoC/Cubit scaffolding** — generate BLoC (3 files) or Cubit (2 files) from the VS Code explorer context menu.
 
 > [!NOTE]
 > The coverage badge is marked as pending until coverage reporting is wired into CI.
@@ -47,10 +44,23 @@ Type-safe VS Code snippets for building Nocterm UI components in Dart.
 
 ## Usage
 
+### Snippets
+
 1. Open a `.dart` file.
 2. Type one of the snippet prefixes (for example `nstless`).
 3. Select the snippet from IntelliSense.
 4. Fill in placeholders and tab through editable fields.
+
+### BLoC / Cubit Scaffolding
+
+Right-click a folder in the VS Code explorer and select **Nocterm: New BLoC** or **Nocterm: New Cubit**. Enter a name (e.g. `counter`) and the extension generates the file set with `part` directives:
+
+| Command | Files Generated |
+| --- | --- |
+| `Nocterm: New BLoC` | `{name}_bloc.dart`, `{name}_event.dart`, `{name}_state.dart` |
+| `Nocterm: New Cubit` | `{name}_cubit.dart`, `{name}_state.dart` |
+
+The generated code uses `nocterm_bloc` conventions with sealed state classes and `part`-based file splitting.
 
 ## Snippet Reference
 
@@ -80,4 +90,4 @@ npm test          # Run extension tests
 ## Notes
 
 > [!NOTE]
-> This project is snippet-driven: there are no commands to run from the Command Palette, and no custom settings required.
+> Snippets are triggered via `n`-prefixed completions in Dart files. BLoC/Cubit scaffolding is available through the explorer context menu or Command Palette (`Nocterm: New BLoC`, `Nocterm: New Cubit`).
