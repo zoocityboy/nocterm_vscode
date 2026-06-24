@@ -28,12 +28,38 @@
     "nocterm",
     "dart"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "extensionDependencies": [
     "Dart-Code.dart-code"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "nocterm.newBloc",
+        "title": "Nocterm: New BLoC"
+      },
+      {
+        "command": "nocterm.newCubit",
+        "title": "Nocterm: New Cubit"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "nocterm.newBloc",
+          "when": "explorerResourceIsFolder",
+          "group": "2_nocterm"
+        },
+        {
+          "command": "nocterm.newCubit",
+          "when": "explorerResourceIsFolder",
+          "group": "2_nocterm"
+        }
+      ]
+    },
     "snippets": [
       {
         "language": "dart",
@@ -51,13 +77,13 @@
     "build:vsix": "npx @vscode/vsce package --out out/nocterm-dev.vsix"
   },
   "devDependencies": {
-    "@types/vscode": "^1.109.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "typescript-eslint": "^8.54.0",
+    "@types/node": "^22.20.0",
+    "@types/vscode": "^1.109.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "typescript-eslint": "^8.54.0"
   }
 }
