@@ -7,7 +7,7 @@ export function toPascalCase(str: string): string {
 	return normalized
 		.split(/[_\s]+/)
 		.filter(Boolean)
-		.map((w) => w[0].toUpperCase() + w.slice(1))
+		.map((w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
 		.join("");
 }
 
