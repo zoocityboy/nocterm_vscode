@@ -1,14 +1,14 @@
-import * as vscode from 'vscode';
 import * as path from 'path';
+import * as vscode from 'vscode';
 
-function toPascalCase(str: string): string {
+export function toPascalCase(str: string): string {
   return str
     .split(/[_\s]/)
     .map(w => w[0].toUpperCase() + w.slice(1))
     .join('');
 }
 
-function toSnakeCase(str: string): string {
+export function toSnakeCase(str: string): string {
   return str
     .replace(/([A-Z])/g, '_$1')
     .toLowerCase()
@@ -16,7 +16,7 @@ function toSnakeCase(str: string): string {
     .replace(/[_\s]+/g, '_');
 }
 
-function validateDartIdentifier(input: string): string | null {
+export function validateDartIdentifier(input: string): string | null {
   if (!input) { return 'Name cannot be empty'; }
   if (!/^[a-z_]\w*$/.test(input)) { return 'Must be a valid Dart identifier'; }
   return null;
@@ -92,7 +92,7 @@ async function generateBloc(folderUri?: vscode.Uri) {
       `    on<${p}Event>(_on${p}Event);\n` +
       `  }\n` +
       `\n` +
-      `  FutureOr<void> _on${p}Event(\n` +
+      `  Future<void> _on${p}Event(\n` +
       `    ${p}Event event,\n` +
       `    Emitter<${p}State> emit,\n` +
       `  ) {\n` +
