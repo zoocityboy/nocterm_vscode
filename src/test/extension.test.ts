@@ -222,24 +222,33 @@ suite("validateInput", () => {
 // ---------------------------------------------------------------------------
 
 suite("Nocterm Extension Integration", () => {
-	test("extension should be active", () => {
+	test("extension should be active", async () => {
 		const ext = vscode.extensions.getExtension("zoocityboy.nocterm-dev");
 		assert.ok(ext, "Extension should be installed");
 		if (ext && !ext.isActive) {
-			ext.activate();
+			await ext.activate();
 		}
+		// Wait a tick for activation to complete
+		await new Promise((resolve) => setTimeout(resolve, 300));
 		assert.ok(ext?.isActive, "Extension should be activated");
 	});
 
 	test("commands should be registered", async () => {
+		// Ensure extension is active first
+		const ext = vscode.extensions.getExtension("zoocityboy.nocterm-dev");
+		if (ext && !ext.isActive) {
+			await ext.activate();
+		}
+		await new Promise((resolve) => setTimeout(resolve, 300));
+
 		const commands = await vscode.commands.getCommands(true);
 		assert.ok(
 			commands.includes("nocterm.newBloc"),
-			"nocterm.newBloc command should be registered",
+			`nocterm.newBloc command should be registered (found: ${commands.filter((c) => c.includes("nocterm")).join(", ")})`,
 		);
 		assert.ok(
 			commands.includes("nocterm.newCubit"),
-			"nocterm.newCubit command should be registered",
+			`nocterm.newCubit command should be registered (found: ${commands.filter((c) => c.includes("nocterm")).join(", ")})`,
 		);
 	});
 
