@@ -4,6 +4,23 @@ All notable changes to the "nocterm-context7-snippets" extension will be documen
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.0](https://github.com/zoocityboy/nocterm_vscode/compare/v0.2.1...v0.3.0) (2026-06-25)
+
+
+### Features
+
+* add nocterm.newBloc/newCubit commands and explorer context menus ([ca629c8](https://github.com/zoocityboy/nocterm_vscode/commit/ca629c86aaf7003d5b6b23199e6086828b1a5345))
+* enhance BLoC/Cubit generation and validation ([fa6f18e](https://github.com/zoocityboy/nocterm_vscode/commit/fa6f18ea2cf804aae6c3a1e5f2825c16006eeded))
+* gate BLoC/Cubit commands by nocterm_bloc dependency in pubspec.yaml ([3a1a7e8](https://github.com/zoocityboy/nocterm_vscode/commit/3a1a7e8b04e401b792d1d80560850f930aefa616))
+* implement BLoC/Cubit file generation commands ([00e1fb5](https://github.com/zoocityboy/nocterm_vscode/commit/00e1fb5ea54bffa7b590448d3599d3bb891a4530))
+
+
+### Bug Fixes
+
+* activate on startup and recheck context on folder changes ([7f8fba7](https://github.com/zoocityboy/nocterm_vscode/commit/7f8fba7296eb9390829947e87f744d01a3f0bc4e))
+* **toPascalCase:** ensure consistent casing in output ([df5072f](https://github.com/zoocityboy/nocterm_vscode/commit/df5072f7d57e5eae577f5803bc266661b556d3e9))
+* use handler-side nocterm_bloc check instead of context-key gating ([8eae28b](https://github.com/zoocityboy/nocterm_vscode/commit/8eae28b8ae1ee89d955a6bab10be02e290abe551))
+
 ## [0.2.1](https://github.com/zoocityboy/nocterm_vscode/compare/v0.2.0...v0.2.1) (2026-02-22)
 
 
