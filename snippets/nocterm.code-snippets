@@ -11,7 +11,7 @@
 				"",
 				"  @override",
 				"  Component build(BuildContext context) {",
-				"    return ${0:const Placeholder()};",
+				"    return ${0:const Container()};",
 				"  }",
 				"}"
 			]
@@ -32,7 +32,7 @@
 				"class _$1State extends State<$1> {",
 				"  @override",
 				"  Component build(BuildContext context) {",
-				"    return ${0:const Placeholder()};",
+				"    return ${0:const Container()};",
 				"  }",
 				"}"
 			]
@@ -68,7 +68,7 @@
 				"",
 				"  @override",
 				"  Component build(BuildContext context) {",
-				"    return ${0:const Placeholder()};",
+				"    return ${0:const Container()};",
 				"  }",
 				"}"
 			]
