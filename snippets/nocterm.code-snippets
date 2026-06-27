@@ -4,6 +4,8 @@
 			"prefix": "nstless",
 			"description": "Insert a StatelessComponent",
 			"body": [
+				"import 'package:nocterm/nocterm.dart';",
+				"",
 				"class $1 extends StatelessComponent {",
 				"  const $1({ Key? key }) : super(key: key);",
 				"",
@@ -18,6 +20,8 @@
 			"prefix": "nstful",
 			"description": "Insert a StatefulComponent",
 			"body": [
+				"import 'package:nocterm/nocterm.dart';",
+				"",
 				"class $1 extends StatefulComponent {",
 				"  const $1({ Key? key }) : super(key: key);",
 				"",
@@ -37,6 +41,8 @@
 			"prefix": "nstanim",
 			"description": "Insert a StatefulComponent with an AnimationController",
 			"body": [
+				"import 'package:nocterm/nocterm.dart';",
+				"",
 				"class $1 extends StatefulComponent {",
 				"  const $1({ Key? key }) : super(key: key);",
 				"",
@@ -65,6 +71,94 @@
 				"    return ${0:const Placeholder()};",
 				"  }",
 				"}"
+			]
+		},
+
+		"Nocterm Hook Component": {
+			"prefix": "nhook",
+			"description": "Insert a HookComponent with useState, useEffect, useMemoized",
+			"body": [
+				"import 'package:nocterm/nocterm.dart';",
+				"import 'package:nocterm_hooks/nocterm_hooks.dart';",
+				"",
+				"class $1 extends HookComponent {",
+				"  const $1({ Key? key }) : super(key: key);",
+				"",
+				"  @override",
+				"  Component build(BuildContext context) {",
+				"    final count = useState(0);",
+				"    final name = useState('');",
+				"    final isMounted = useIsMounted();",
+				"",
+				"    useEffect(() {",
+				"      print('mounted: \\$name.value');",
+				"      return () => print('unmounted');",
+				"    }, [name]);",
+				"",
+				"    final doubled = useMemoized(() => count.value * 2);",
+				"",
+				"    return ${0:const Placeholder()};",
+				"  }",
+				"}"
+			]
+		},
+		"useState hook": {
+			"prefix": "nhusestate",
+			"description": "Insert useState hook — reactive ValueNotifier<T>",
+			"body": [
+				"final $1 = useState(${2:initialValue});"
+			]
+		},
+		"useEffect hook": {
+			"prefix": "nhuseeffect",
+			"description": "Insert useEffect hook — side effect with optional keys & cleanup",
+			"body": [
+				"useEffect(() {",
+				"  // side effect${0}",
+				"  return () => // cleanup;",
+				"}, [${1:keys}]);"
+			]
+		},
+		"useMemoized hook": {
+			"prefix": "nhusememoized",
+			"description": "Insert useMemoized hook — cached value recomputed when keys change",
+			"body": [
+				"final $1 = useMemoized(() => ${2:expensiveComputation()}, [${3:keys}]);"
+			]
+		},
+		"useRef hook": {
+			"prefix": "nhuseref",
+			"description": "Insert useRef hook — mutable reference that survives rebuilds without triggering them",
+			"body": [
+				"final $1 = useRef<${2:type}>(null);"
+			]
+		},
+		"useIsMounted hook": {
+			"prefix": "nhuseismounted",
+			"description": "Insert useIsMounted hook — guard async continuations",
+			"body": [
+				"final isMounted = useIsMounted();"
+			]
+		},
+		"useCallback hook": {
+			"prefix": "nhusecallback",
+			"description": "Insert useCallback hook — memoized function reference",
+			"body": [
+				"final $1 = useCallback(() => ${2:callbackBody}, [${3:keys}]);"
+			]
+		},
+		"useListenable hook": {
+			"prefix": "nhuselistenable",
+			"description": "Insert useListenable hook — subscribe to ChangeNotifier/Listenable",
+			"body": [
+				"final $1 = useListenable(${2:listenable});"
+			]
+		},
+		"useValueListenable hook": {
+			"prefix": "nhusevaluelistenable",
+			"description": "Insert useValueListenable hook — subscribe and return current value",
+			"body": [
+				"final $1 = useValueListenable<${2:type}>($3);"
 			]
 		}
 	}
