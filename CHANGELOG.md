@@ -4,6 +4,19 @@ All notable changes to the "nocterm-context7-snippets" extension will be documen
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.4.0](https://github.com/zoocityboy/nocterm_vscode/compare/v0.3.0...v0.4.0) (2026-06-27)
+
+
+### Features
+
+* **snippets:** add nocterm_hooks support and new hook snippets ([a8fcfa2](https://github.com/zoocityboy/nocterm_vscode/commit/a8fcfa252e028a93418dc4593bd148492d73b22c))
+* **snippets:** add nocterm_hooks support and new hook snippets ([8d6e21a](https://github.com/zoocityboy/nocterm_vscode/commit/8d6e21ad6c01afa8df4c4386589eb8ad69190174))
+
+
+### Bug Fixes
+
+* **snippets:** replace Placeholder with Container in component snippets ([57af447](https://github.com/zoocityboy/nocterm_vscode/commit/57af4474689d123b46974e4077e1b9e8e0f47194))
+
 ## [0.3.0](https://github.com/zoocityboy/nocterm_vscode/compare/v0.2.1...v0.3.0) (2026-06-25)
 
 
