@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -40,5 +40,15 @@ jobs:
       - name: Lint source
         run: npm run lint
 
+      # - name: Install xvfb
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y xvfb
+      
       - name: Run extension tests
         run: xvfb-run -a npm test
+        if: runner.os == 'Linux'
+
+      - name: Run extension tests
+        run: npm test
+        if: runner.os != 'Linux'
